@@ -1,0 +1,12 @@
+{
+    "name": "@laraveldesign/avatar",
+    "version": "1.0.0",
+    "description": "Avatar and avatar group component for Laravel",
+    "main": "resources/js/vue/index.js",
+    "module": "resources/js/vue/index.js",
+    "files": ["resources/js/vue"],
+    "keywords": ["laravel", "avatar", "user", "image", "livewire", "vue"],
+    "author": "Shane Barron <mrshanebarron@gmail.com>",
+    "license": "MIT",
+    "peerDependencies": {"vue": "^3.0.0"}
+}
