@@ -1,48 +1,24 @@
+@php
+$sizes = ['xs' => 'w-6 h-6 text-xs', 'sm' => 'w-8 h-8 text-sm', 'md' => 'w-10 h-10 text-base', 'lg' => 'w-12 h-12 text-lg', 'xl' => 'w-16 h-16 text-xl'];
+$sizeClass = $sizes[$size] ?? $sizes['md'];
+$statusColors = ['online' => 'bg-green-500', 'offline' => 'bg-gray-400', 'busy' => 'bg-red-500', 'away' => 'bg-yellow-500'];
+$statusClass = $status ? ($statusColors[$status] ?? 'bg-gray-400') : null;
+@endphp
+
 <div class="relative inline-block">
     @if($src)
         <img
             src="{{ $src }}"
             alt="{{ $alt }}"
-            @class([
-                'object-cover',
-                'rounded-full' => $shape === 'circle',
-                'rounded-lg' => $shape === 'square',
-                'w-8 h-8' => $size === 'sm',
-                'w-10 h-10' => $size === 'md',
-                'w-12 h-12' => $size === 'lg',
-                'w-16 h-16' => $size === 'xl',
-            ])
+            class="{{ $sizeClass }} object-cover {{ $rounded ? 'rounded-full' : 'rounded-lg' }}"
         >
     @else
-        <div
-            @class([
-                'flex items-center justify-center bg-gray-200 text-gray-600 font-medium',
-                'rounded-full' => $shape === 'circle',
-                'rounded-lg' => $shape === 'square',
-                'w-8 h-8 text-xs' => $size === 'sm',
-                'w-10 h-10 text-sm' => $size === 'md',
-                'w-12 h-12 text-base' => $size === 'lg',
-                'w-16 h-16 text-lg' => $size === 'xl',
-            ])
-        >
+        <div class="{{ $sizeClass }} flex items-center justify-center bg-gray-200 text-gray-600 font-medium {{ $rounded ? 'rounded-full' : 'rounded-lg' }}">
             {{ $this->getInitials() }}
         </div>
     @endif
+
     @if($status)
-        <span
-            @class([
-                'absolute block rounded-full ring-2 ring-white',
-                'w-2.5 h-2.5' => $size === 'sm',
-                'w-3 h-3' => $size === 'md',
-                'w-3.5 h-3.5' => $size === 'lg',
-                'w-4 h-4' => $size === 'xl',
-                'bg-green-500' => $status === 'online',
-                'bg-red-500' => $status === 'offline',
-                'bg-yellow-500' => $status === 'away',
-                'bg-gray-400' => $status === 'busy',
-                'bottom-0 right-0' => $statusPosition === 'bottom-right',
-                'top-0 right-0' => $statusPosition === 'top-right',
-            ])
-        ></span>
+        <span class="absolute bottom-0 right-0 block w-3 h-3 {{ $statusClass }} border-2 border-white rounded-full"></span>
     @endif
 </div>

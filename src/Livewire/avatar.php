@@ -10,26 +10,17 @@ class Avatar extends Component
     public ?string $alt = null;
     public ?string $name = null;
     public string $size = 'md';
-    public string $shape = 'circle';
+    public bool $rounded = true;
     public ?string $status = null;
-    public ?string $statusPosition = 'bottom-right';
 
-    public function mount(
-        ?string $src = null,
-        ?string $alt = null,
-        ?string $name = null,
-        string $size = 'md',
-        string $shape = 'circle',
-        ?string $status = null,
-        ?string $statusPosition = 'bottom-right'
-    ): void {
+    public function mount(?string $src = null, ?string $alt = null, ?string $name = null, string $size = 'md', bool $rounded = true, ?string $status = null): void
+    {
         $this->src = $src;
-        $this->alt = $alt ?? $name;
+        $this->alt = $alt ?? $name ?? 'Avatar';
         $this->name = $name;
         $this->size = $size;
-        $this->shape = $shape;
+        $this->rounded = $rounded;
         $this->status = $status;
-        $this->statusPosition = $statusPosition;
     }
 
     public function getInitials(): string
