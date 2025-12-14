@@ -10,7 +10,7 @@
 import { computed } from 'vue';
 
 export default {
-  name: 'LdAvatar',
+  name: 'SbAvatar',
   props: {
     src: { type: String, default: null },
     alt: { type: String, default: null },

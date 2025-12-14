@@ -36,6 +36,6 @@ class Avatar extends Component
 
     public function render()
     {
-        return view('ld-avatar::livewire.avatar');
+        return view('sb-avatar::livewire.avatar');
     }
 }
