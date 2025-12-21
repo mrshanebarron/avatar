@@ -1,24 +1,24 @@
 @php
-$sizes = ['xs' => 'w-6 h-6 text-xs', 'sm' => 'w-8 h-8 text-sm', 'md' => 'w-10 h-10 text-base', 'lg' => 'w-12 h-12 text-lg', 'xl' => 'w-16 h-16 text-xl'];
-$sizeClass = $sizes[$size] ?? $sizes['md'];
-$statusColors = ['online' => 'bg-green-500', 'offline' => 'bg-gray-400', 'busy' => 'bg-red-500', 'away' => 'bg-yellow-500'];
-$statusClass = $status ? ($statusColors[$status] ?? 'bg-gray-400') : null;
+$sizes = ['xs' => ['size' => '24px', 'font' => '10px'], 'sm' => ['size' => '32px', 'font' => '12px'], 'md' => ['size' => '40px', 'font' => '14px'], 'lg' => ['size' => '48px', 'font' => '16px'], 'xl' => ['size' => '64px', 'font' => '20px']];
+$sizeData = $sizes[$this->size] ?? $sizes['md'];
+$statusColors = ['online' => '#22c55e', 'offline' => '#9ca3af', 'busy' => '#ef4444', 'away' => '#eab308'];
+$statusColor = $this->status ? ($statusColors[$this->status] ?? '#9ca3af') : null;
 @endphp
 
-<div class="relative inline-block">
-    @if($src)
+<div style="position: relative; display: inline-block;">
+    @if($this->src)
         <img
-            src="{{ $src }}"
-            alt="{{ $alt }}"
-            class="{{ $sizeClass }} object-cover {{ $rounded ? 'rounded-full' : 'rounded-lg' }}"
+            src="{{ $this->src }}"
+            alt="{{ $this->alt }}"
+            style="width: {{ $sizeData['size'] }}; height: {{ $sizeData['size'] }}; object-fit: cover; {{ $this->rounded ? 'border-radius: 50%;' : 'border-radius: 8px;' }}"
         >
     @else
-        <div class="{{ $sizeClass }} flex items-center justify-center bg-gray-200 text-gray-600 font-medium {{ $rounded ? 'rounded-full' : 'rounded-lg' }}">
+        <div style="width: {{ $sizeData['size'] }}; height: {{ $sizeData['size'] }}; font-size: {{ $sizeData['font'] }}; display: flex; align-items: center; justify-content: center; background: #e5e7eb; color: #4b5563; font-weight: 500; {{ $this->rounded ? 'border-radius: 50%;' : 'border-radius: 8px;' }}">
             {{ $this->getInitials() }}
         </div>
     @endif
 
-    @if($status)
-        <span class="absolute bottom-0 right-0 block w-3 h-3 {{ $statusClass }} border-2 border-white rounded-full"></span>
+    @if($this->status)
+        <span style="position: absolute; bottom: 0; right: 0; display: block; width: 12px; height: 12px; background: {{ $statusColor }}; border: 2px solid white; border-radius: 50%;"></span>
     @endif
 </div>
